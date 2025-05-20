@@ -7,7 +7,7 @@ function Input() {
   const [reasonList, setReasonList] = useState([]);
 
   const generateReason = async (text) => {
-    await fetch('/reason', { method: 'POST', body: { text } });
+    await fetch('/reasons', { method: 'POST', body: { text } });
     setReasonList([...reasonList, text]);
     return;
   };
