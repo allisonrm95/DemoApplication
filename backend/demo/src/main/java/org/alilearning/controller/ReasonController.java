@@ -3,12 +3,13 @@ package org.alilearning.controller;
 import org.alilearning.model.Reason;
 import org.alilearning.service.ReasonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/api")  // Add base path
 public class ReasonController {
     private final ReasonService reasonService;
 
@@ -18,8 +19,8 @@ public class ReasonController {
     }
 
     @PostMapping("/reasons")
-    public Reason createReason(@RequestBody String reason){
-        return reasonService.createReason(reason);
+    public Reason createReason(@RequestBody Reason reason){
+        return reasonService.createReason(reason.getReason());
     }
 
     // add get reasons eventually
