@@ -1,10 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 
-function Input() {
+function Input({ setReasonList }) {
+  ``;
   const [reason, setReason] = useState('');
-  const [reasonList, setReasonList] = useState([]);
-  const [error, setError] = useState(null);
+  const updateReasonList = async () => {
+    const response = await fetch('http://localhost:8080/api/reasons');
+    const data = await response.json();
+    setReasonList(data);
+  };
 
   const generateReason = async (text) => {
     try {
@@ -25,13 +29,12 @@ function Input() {
         );
       }
 
-      const data = await response.json();
-      setReasonList((prevList) => [...prevList, data]);
+      // const data = await response.json();
+      // setReasonList((prevList) => [...prevList, data]);
       setReason(''); // Clear input after successful submission
-      setError(null); // Clear any previous errors
+      updateReasonList();
     } catch (error) {
       console.error('Error:', error);
-      setError(error.message);
     }
   };
 
@@ -48,20 +51,11 @@ function Input() {
       />
       <button onClick={() => generateReason(reason)}>Submit</button>
 
-      {error && (
-        <div
-          className='error-message'
-          style={{ color: 'red', marginTop: '10px' }}
-        >
-          Error: {error}
-        </div>
-      )}
-
-      <div className='reasons-list'>
+      {/* <div className='reasons-list'>
         {reasonList.map((reason) => (
           <p key={reason.id}>{reason.reason}</p>
         ))}
-      </div>
+      </div> */}
     </>
   );
 }

@@ -20,5 +20,7 @@ public class ReasonService {
         return reasonRepository.save(newReason);
     }
     // add method to get reasons after I set that up in the frontend
-    
+    public Reason[] getAllReasons(){
+        return reasonRepository.findAll().toArray(new Reason[0]);
+    }
 }

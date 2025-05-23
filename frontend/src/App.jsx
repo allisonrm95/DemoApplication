@@ -2,13 +2,14 @@ import { useState } from 'react';
 import orlaPic from './assets/orla.png';
 import meadowPic from './assets/meadow.png';
 import './App.css';
-import Reason from './components/reason';
-import Input from './components/input';
+import Reasons from './components/reasons/Reasons';
+import Input from './components/input/input';
 
 function App() {
   const [meadow, setMeadow] = useState(0);
   const [orla, setOrla] = useState(0);
-  //I better see this change show up!!!!
+  const [reasonList, setReasonList] = useState([]);
+
   return (
     <>
       <div>
@@ -25,13 +26,12 @@ function App() {
         </button>
       </div>
       <div className='inputDiv'>
-        <Input />
-        <Input />
+        <Input setReasonList={setReasonList} />
+        <Input setReasonList={setReasonList} />
       </div>
-
-      <Reason />
-      <Reason />
-      <Reason />
+      <div className='reasonDiv'>
+        <Reasons reasonList={reasonList} />
+      </div>
     </>
   );
 }

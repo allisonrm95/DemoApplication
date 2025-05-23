@@ -23,9 +23,9 @@ public class ReasonController {
         return "Root is working!";
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "API is working!";
+    @GetMapping("/reasons")
+    public Reason[] getAllReasons() {
+        return reasonService.getAllReasons();
     }
     @PostMapping("/reasons")
     public Reason createReason(@RequestBody Reason reason){
