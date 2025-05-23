@@ -18,6 +18,11 @@ public class ReasonController {
     public ReasonController(ReasonService reasonService){
         this.reasonService = reasonService;
     }
+    @GetMapping("/")
+    public String root() {
+        return "Root is working!";
+    }
+
     @GetMapping("/test")
     public String test() {
         return "API is working!";
